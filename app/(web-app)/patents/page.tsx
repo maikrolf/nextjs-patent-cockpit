@@ -1,10 +1,14 @@
-import { prisma } from 'lib/database'
-import useUser from 'lib/useUser'
+import { prisma } from '../../../lib/database'
+import useUser from '../../../lib/useUser'
 import Link from 'next/link'
 import Patent from './patent'
 
 
-export default async function Page({ children }) {
+export default async function Page({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const user = await useUser()
   const patents = await getPatents(user.id)
   return (
@@ -18,7 +22,7 @@ export default async function Page({ children }) {
   )
 }
 
-async function getPatents(userId) {
-  const patents = await prisma.patents.findMany({ where: { userId } })
+async function getPatents(usersId: string) {
+  const patents = await prisma.patents.findMany({ where: { usersId } })
   return patents
 }

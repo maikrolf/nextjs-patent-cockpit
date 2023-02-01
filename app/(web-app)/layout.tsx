@@ -1,13 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Inter } from '@next/font/google'
-
-import '../globals.css'
-import useUser from 'lib/useUser'
+import useUser from '../../lib/useUser'
+import '../../styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const {isLoggedIn, email} = await useUser()
 
   return (
@@ -18,9 +21,9 @@ export default async function RootLayout({ children }) {
       */}
       <head />
       <body>
-        <main className={inter.className + ' bg-blue-100 min-h-screen'}>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12 p-4 bg-blue-200">
-            <Link href="/" className='flex flex-row items-center gap-4 font-medium'>
+        <main className={inter.className + ' min-h-screen'}>
+          <div className="flex flex-col p-10 sm:flex-row sm:items-center gap-10 sm:gap-12 bg-blue-700">
+            <Link href="/" className='flex flex-row items-center gap-10 font-medium'>
               <Image
                 src="/favicon.svg"
                 alt='Patent Cockpit logo'
@@ -29,15 +32,15 @@ export default async function RootLayout({ children }) {
                 priority
               />
               <span>
-                Patent Cockpit
+                Patent Cockpit ddd
               </span>
             </Link>
             {isLoggedIn
               ? <>
-                  <Link className='font-medium' href="/patents" > Patents</Link >
+                  <Link className='font-medium gap-10 ' href="/patents" > Patents</Link >
                   <Link href="/signout" className='sm:ml-auto font-medium'>{email}</Link>
                 </>
-              : <Link className='sm:ml-auto font-medium' href="/login">Login</Link>
+              : <Link className='sm:ml-auto font-medium gap-10 ' href="/login">Login</Link>
             }
           </div>
           <div className='p-4'>

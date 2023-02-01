@@ -1,5 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
-const argon2 = require("argon2");
+import { PrismaClient } from '@prisma/client';
+import argon2 from "argon2";
 
 const prisma = new PrismaClient()
 
@@ -10,8 +10,8 @@ async function main() {
         update: {email: "noah@noah.com", password},
         create: {email: "noah@noah.com", password},
     })
-    const patent_1 = await prisma.patents.create({data: {name: "Patent 1", userId: user.id}})
-    const patent_2 = await prisma.patents.create({data: {name: "Patent 2", userId: user.id}})
+    const patent_1 = await prisma.patents.create({data: {name: "Patent 1", usersId: user.id}})
+    const patent_2 = await prisma.patents.create({data: {name: "Patent 2", usersId: user.id}})
     console.log({patent_1, patent_2})
 }
 

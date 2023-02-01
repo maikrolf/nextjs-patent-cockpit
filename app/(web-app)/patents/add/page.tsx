@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function Page({ children }) {
+export default function Page({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <form className="flex flex-col gap-4 w-fit" method="post" action="/api/patent">
       <h2>Add Patent</h2>

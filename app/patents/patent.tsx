@@ -2,11 +2,12 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import React from "react"
 
-export default function Patent({ name, id }) {
+export default function Patent({ name, id }:any) {
     const router = useRouter()
 
-    return <div className="bg-white p-4 rounded-lg flex flex-row gap-4 min-w-[20rem]">
+    return <div className="p-4 rounded-lg flex flex-row gap-4 min-w-[20rem]">
         <h2 className='grow'>{name}</h2>
         <button
             onClick={() => fetch(`/api/patent/${id}`, { method: 'DELETE' }).then(() => router.refresh())}

@@ -1,11 +1,11 @@
 import { getIronSession } from "iron-session/edge";
-import { NextResponse } from "next/server"
-import { ironConfig } from "lib/config"
+import { NextRequest, NextResponse } from "next/server";
+import { ironConfig } from "./lib/config";
 
-export async function middleware(req) {
+export async function middleware(req:NextRequest) {
     const res = NextResponse.next()
 
-    const session = await getIronSession(req, res, ironConfig)
+    const session = await getIronSession(req, NextResponse.next(), ironConfig)
     const { user } = session
     //console.log({user})
 
